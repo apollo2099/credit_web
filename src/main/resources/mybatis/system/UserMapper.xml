@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
-	<sql id="userColumns">user_email,user_phone,user_type,nickname,user_level,user_role,user_head_images,description,user_status</sql>
+	<sql id="userColumns">id,user_email,user_phone,user_type,nickname,user_level,user_role,user_head_images,description,user_status</sql>
 
 	
 	<resultMap type="User" id="userResultMap">
@@ -20,7 +20,7 @@
 	</resultMap>
 		
 	<!-- 判断用户名和密码 -->
-	<select id="getUserInfo" parameterType="PageData" resultType="PageData" useCache="false">
+	<select id="getUserInfo" parameterType="PageData" resultType="User" useCache="false">
 	   select 
 	   <include refid="userColumns"></include>
 		from cr_user 
@@ -33,12 +33,17 @@
 	  		) 
 	  	and user_status != -1
 		</if>
-		<if test="userId != null">
-		and user_id = #{userId}
+		<if test="id != null">
+		     and id = #{id}
 		</if>
 	</select>
 	
-
+	<select id="getUserById" parameterType="java.lang.Integer" resultType="User">
+	   select 
+	   <include refid="userColumns"></include>
+		from cr_user 
+		where  id = #{id}
+	</select>
 	
 	<select id="count" parameterType="PageData" resultType="int">
 		select count(1)
@@ -69,23 +74,26 @@
 		limit #{from},#{size}
 	</select>
 	
-	<insert id="add" parameterType="PageData">
-		insert into sys_user (
-			login_name,
-			password,
-			name,
-			status,
-			description,
-			email,
-			phone
+	
+	<insert id="saveUserInfo" parameterType="PageData">
+		insert into cr_user (
+			user_email,
+			user_phone,
+			user_type,
+			nickname,
+			user_pwd,
+			user_level,
+			user_status,
+			description
 		) values (
-			#{loginName},
-			#{password},
-			#{name},
-			#{status},
-			#{description},
-			#{email},
-			#{phone}
+			#{userEmail},
+			#{userPhone},
+			#{userType},
+			#{nickname},
+			#{userPwd},
+			#{userLevel},
+			#{userStatus},
+			#{description}
 		)
 	</insert>
 	
