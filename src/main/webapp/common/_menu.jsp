@@ -13,9 +13,15 @@ pageContext.setAttribute("basePath",basePath);
         <div class="row">      
 		<div class="col-md-4 text-center" style=" float: right; vertical-align:top;">
 			<p class="text-center" style="color: #A1ACB4;">
-				<a href="${basePath }login.jsp" style="margin-bottom: 1px; color: #A1ACB4;">登录</a>
+			   <c:if test="${empty userInfo }">
+				<a href="${basePath }user/tologin" style="margin-bottom: 1px; color: #A1ACB4;">登录</a>
 				<a href="${basePath }register.jsp" style="margin-bottom: 1px; color: #A1ACB4;">免费注册</a>
-				| <a  href="${basePath }user/user_main.jsp" target="_blank" style="color: #A1ACB4">${userInfo.userEmail }用户中心${userInfo.user_email }</a> 
+				</c:if>
+				<c:if test="${not empty userInfo }">
+				欢迎你，${userInfo.userEmail } &nbsp;&nbsp;&nbsp;
+				<a  href="${basePath }user/user_main.jsp" target="_blank" style="color: #A1ACB4">用户中心</a>
+				| <a  href="${basePath }/user/loginout" target="_blank" style="color: #A1ACB4">退出</a>
+				</c:if> 
 				| <a  href="${basePath }help/help.jsp"  target="_blank" style="color: #A1ACB4">帮助中心</a> 
 			</p>
 		</div> 

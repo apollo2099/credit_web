@@ -27,7 +27,7 @@ pageContext.setAttribute("basePath",basePath);
                             <ul>
                                 <li class="jstree-open">用户管理
                                     <ul>
-                                    <li data-jstree='{"type":"css"}'><a href ="${basePath }user/user_details.jsp" target="_self">用户信息</a></li>
+                                    <li data-jstree='{"type":"css"}'><a href ="${basePath }user/userdetails?id=${userInfo.id}" target="_self">用户信息</a></li>
                                     <li data-jstree='{"type":"css"}'><a href ="${basePath }user/user_reset_password.jsp" target="_self">重置密码</a></li>
                                     </ul>
                                 </li>

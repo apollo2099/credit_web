@@ -40,12 +40,12 @@
                     
                              <dl class="dl-horizontal">
                                     <dt>姓名：</dt>
-                                    <dd>张三</dd>
+                                    <dd>${user.nickname }</dd>
                               </dl>
                   
                               <dl class="dl-horizontal">
                                     <dt>E-mail：</dt>
-                                    <dd> test@163.com</dd>
+                                    <dd> ${user.userEmail }</dd>
                                </dl>
                   
                                 <dl class="dl-horizontal">
